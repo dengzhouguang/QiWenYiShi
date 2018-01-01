@@ -1,10 +1,15 @@
 package com.dzg.readclient.ui.activity;
 
+import android.Manifest;
 import android.app.LocalActivityManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -19,7 +24,7 @@ import com.dzg.readclient.utils.StatusBarUtils;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
     @BindView(R.id.tabhost)
     TabHost mTabHost;
     @BindView(android.R.id.tabcontent)
@@ -28,19 +33,20 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.radiogroup)
     RadioGroup mRadioGroup;
     protected LocalActivityManager mLocalActivityManager;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
     }
+
     @Override
-    public  void onCreateView(Bundle savedInstanceState) {
-        NavigationView navigationView =  findViewById(R.id.nav_view);
+    public void onCreateView(Bundle savedInstanceState) {
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         mLocalActivityManager = new LocalActivityManager(MainActivity.this, true);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
         initTab();
     }
-
 
 
     private void initTab() {
@@ -84,14 +90,17 @@ public class MainActivity extends BaseActivity
                 }
             }
         });
-        mFrameLayout.setTop(60);
-        mFrameLayout.setPadding(0, StatusBarUtils.getStatusBarHeight(this),0,0);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
+            mFrameLayout.setPadding(0, StatusBarUtils.getStatusBarHeight(this), 0, 0);
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.M){
+            requestPermissions();
+        }
 
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -141,7 +150,7 @@ public class MainActivity extends BaseActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -157,4 +166,36 @@ public class MainActivity extends BaseActivity
         mLocalActivityManager.dispatchPause(isFinishing());
         super.onPause();
     }
+
+    public void requestPermissions() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
+        if (requestCode == 1)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+
+            } else
+            {
+                finish();
+            }
+            return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 }

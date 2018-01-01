@@ -20,6 +20,7 @@ import com.dzg.readclient.mvp.contract.UserInfoContract.Presenter;
 import com.dzg.readclient.mvp.usecase.GetUserInfo;
 import com.dzg.readclient.rx.RxBus;
 import com.dzg.readclient.rx.RxBusMessage;
+import com.dzg.readclient.utils.FileUtil;
 import com.dzg.readclient.utils.HttpUtil;
 import com.dzg.readclient.utils.ProgressDialogUtils;
 import com.dzg.readclient.utils.ToastUtils;
@@ -168,9 +169,10 @@ public class UserInfoPresenter implements Presenter {
         // aspectX aspectY 是宽高的比例
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-
+        if(ToolsUtils.hasSdcard()) {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(
-                Environment.getExternalStorageDirectory(), IMAGE_FILE_NAME)));
+                Environment.getExternalStorageDirectory(), IMAGE_FILE_NAME)));}else{
+        }
 
         byte[] mContent = new byte[0];
         ContentResolver resolver = mContext.getContentResolver();
@@ -193,6 +195,7 @@ public class UserInfoPresenter implements Presenter {
             intent.putExtra("outputX", 200);
             intent.putExtra("outputY", 200);
         }
+        FileUtil.saveBitmap(myBitmap);
         intent.putExtra("return-data", true);
         ((Activity) mContext).startActivityForResult(intent, Constants.CROP_CODE);
     }
@@ -212,7 +215,7 @@ public class UserInfoPresenter implements Presenter {
 
     @Override
     public void uploadPortrait() {
-        File file = new File(Environment.getExternalStorageDirectory() + "/" + IMAGE_FILE_NAME);
+        File file = new File(Environment.getExternalStorageDirectory() , IMAGE_FILE_NAME);
         upLoadProtrait(file, String.valueOf(ReadClientApp.getInstance().currentUser.getId()));
     }
 

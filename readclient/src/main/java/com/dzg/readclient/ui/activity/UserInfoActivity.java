@@ -193,7 +193,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoContract.V
 		TextView title = (TextView) mPortraitDialog
 				.findViewById(R.id.dialog_userinfo_title);
 		title.setText(R.string.set_portrait);
-		ListView listview = (ListView) mPortraitDialog
+		ListView listview =  mPortraitDialog
 				.findViewById(R.id.dialog_userinfo_listview);
 		String[] strings = new String[] { "相册", "相机" };
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(

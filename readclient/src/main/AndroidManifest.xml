@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dzg.readclient">
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 在SDCard中文件权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 广点通 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+
+    <!-- 阅读消息,获取短信验证码自动填充 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <!-- 友盟必选 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:name=".ReadClientApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/pic"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/pic"
+        android:supportsRtl="true"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme.NoActionBar" >
+        <!--android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"-->
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="nosensor"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.AllJokeActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.QuShiActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.QuTuActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.MeiTuActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.UserCenterActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.QuShiDetailActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
+            android:exported="false"
+            android:screenOrientation="nosensor"
+            android:launchMode="singleTop" >
+        </activity>
+        <activity android:name=".ui.activity.TuDetailActivity"
+            android:exported="false"
+            android:launchMode="singleTop" >
+        </activity>
+        <activity android:name=".ui.activity.ImageShowActivity"
+            android:exported="false"
+            android:launchMode="singleTop" >
+        </activity>
+        <activity android:name=".ui.activity.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity android:name=".ui.activity.CreateUserInfoActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity android:name=".ui.activity.UserInfoActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity android:name=".ui.activity.UpdateNickActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.FeedbackActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.MyCollectActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+
+        <activity
+            android:name=".ui.activity.CheckCodeActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.FindPwdActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ReSetPwdActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" >
+        </activity>
+    </application>
+
+</manifest>

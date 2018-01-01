@@ -5,11 +5,11 @@ package com.dzg.readclient.commons;
  */
 public class Constants {
     //	public static final String BASE_API_URL ="http://120.77.35.181/QiQuYingServer/";
-   public static final String BASE_API_URL ="http://192.168.43.173/QiQuYing/";
+//   public static final String BASE_API_URL ="http://192.168.43.173/QiQuYing/";
 //    public static final String BASE_API_URL ="http://10.0.2.2/QiQuYingServer/";
 //	public static final String BASE_API_URL="http://dzg.tunnel.echomod.cn/QiQuYingServer/";
 //    public static final String BASE_API_URL="http://dzg.tunnel.echomod.cn/QiQuYing/";
-//    public static final String BASE_API_URL = "http://39.108.152.183/QiQuYing/";
+    public static final String BASE_API_URL = "http://39.108.152.183/QiQuYing/";
     public static final long HTTP_CONNECT_TIMEOUT = 15000;
     public static final long HTTP_READ_TIMEOUT = 15000;
     public static final long HTTP_CACHE_SIZE = 1024 * 1024 * 10 * 8;

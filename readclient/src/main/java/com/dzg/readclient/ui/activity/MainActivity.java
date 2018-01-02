@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity
         });
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
             mFrameLayout.setPadding(0, StatusBarUtils.getStatusBarHeight(this), 0, 0);
-        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
             requestPermissions();
         }
 
